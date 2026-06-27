@@ -30,7 +30,7 @@ This project builds and compares four deep learning models to automatically clas
 
 ## Dataset
 
-**PlantVillage Dataset** — [Kaggle Link](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset)
+**PlantVillage Dataset** - [Kaggle Link](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset)
 
 | Property | Value |
 |----------|-------|
@@ -64,7 +64,7 @@ All models share the same preprocessing pipeline:
 
 ---
 
-### 1. Simple CNN — 90.85%
+### 1. Simple CNN - 90.85%
 
 Lightweight baseline model with three convolutional blocks.
 
@@ -91,7 +91,7 @@ Input (124 × 124 × 3)
 
 ---
 
-### 2. VGG16 — 87.09% *(Focus Model)*
+### 2. VGG16 - 87.09% *(Focus Model)*
 
 > This is the primary model explored in this study.
 
@@ -146,10 +146,10 @@ Only the **classifier head (1.19M params)** is trained. The VGG16 base weights r
 
 | Epoch | Train Accuracy | Val Accuracy | Val Loss |
 |-------|--------------|-------------|---------|
-| 1 | 42.47% | 73.98% | — |
-| 5 | ~72% | ~83% | — |
-| 7 | 79.99% | 85.40% | — |
-| 10 | ~81% | ~86% | — |
+| 1 | 42.47% | 73.98% | - |
+| 5 | ~72% | ~83% | - |
+| 7 | 79.99% | 85.40% | - |
+| 10 | ~81% | ~86% | - |
 | 15 | 83.24% | **87.09%** | 0.3944 |
 
 The model converged steadily but showed a noticeable **train-validation gap** throughout — train accuracy lagged behind validation accuracy in early epochs, suggesting the frozen VGG16 features were already rich, but the single linear head struggled to fully leverage them.
@@ -158,12 +158,12 @@ The model converged steadily but showed a noticeable **train-validation gap** th
 
 Although VGG16 is a powerful backbone, several factors explain the 87.09% result:
 
-1. **Frozen base weights** — ImageNet features are not perfectly aligned with plant disease textures. Fine-tuning the upper conv layers would have improved domain adaptation.
-2. **Input size mismatch** — VGG16 was originally designed for 224×224 inputs. Using 124×124 means the spatial feature maps are smaller, potentially losing fine-grained texture details critical for disease classification.
-3. **No fine-tuning phase** — Unlike MobileNetV2, VGG16 was not given a second training phase where deeper layers are unfrozen and allowed to adapt to the domain.
-4. **Large model, small dataset relative to capacity** — VGG16 has 14.7M frozen parameters encoding ImageNet priors that may not generalize well to macro leaf patterns without domain tuning.
+1. **Frozen base weights** - ImageNet features are not perfectly aligned with plant disease textures. Fine-tuning the upper conv layers would have improved domain adaptation.
+2. **Input size mismatch** - VGG16 was originally designed for 224×224 inputs. Using 124×124 means the spatial feature maps are smaller, potentially losing fine-grained texture details critical for disease classification.
+3. **No fine-tuning phase** - Unlike MobileNetV2, VGG16 was not given a second training phase where deeper layers are unfrozen and allowed to adapt to the domain.
+4. **Large model, small dataset relative to capacity** - VGG16 has 14.7M frozen parameters encoding ImageNet priors that may not generalize well to macro leaf patterns without domain tuning.
 
-#### VGG16 vs MobileNetV2 — Key Difference
+#### VGG16 vs MobileNetV2 - Key Difference
 
 | Aspect | VGG16 | MobileNetV2 |
 |--------|-------|-------------|
@@ -177,7 +177,7 @@ The ~9% accuracy gap is almost entirely explained by fine-tuning. VGG16 with the
 
 ---
 
-### 3. Deep CNN — 95.41%
+### 3. Deep CNN - 95.41%
 
 A custom deep architecture with 4 convolutional blocks and batch normalization.
 
@@ -199,7 +199,7 @@ Input (124 × 124 × 3)
 
 ---
 
-### 4. MobileNetV2 — 96.46% (Best)
+### 4. MobileNetV2 - 96.46% (Best)
 
 ```
 Input (124 × 124 × 3)
@@ -267,8 +267,8 @@ Download from [Kaggle PlantVillage](https://www.kaggle.com/datasets/abdallahalid
 jupyter notebook
 ```
 
-- `Dl_PlantVillage.ipynb` — Simple CNN, Deep CNN, MobileNetV2
-- `Dl_PlantVillage_VGG16.ipynb` — VGG16 transfer learning model
+- `Dl_PlantVillage.ipynb` - Simple CNN, Deep CNN, MobileNetV2
+- `Dl_PlantVillage_VGG16.ipynb` - VGG16 transfer learning model
 
 ---
 
